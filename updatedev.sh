@@ -3,6 +3,8 @@
 #Defines the update varibles. 
 #upwo (update without installing changed files)
 #upw (update with changed files)
+#upwots (update without installing changed files troubleshooting)
+#upwts (update with changed files troubleshooting)
 
 upwo() {
 	echo "Updating Pterodactyl ..." >&2
@@ -96,7 +98,7 @@ upw() {
 	export COMPOSER_ALLOW_SUPERUSER=0
 }
 
-upw() {
+upwts() {
 	echo "Updating Pterodactyl ..." >&2
 	echo "Please wait while we run the commands. This may take up to 5 minutes." >&2
 	export NODE_OPTIONS=--openssl-legacy-provider
@@ -145,6 +147,8 @@ upw() {
 
 	export COMPOSER_ALLOW_SUPERUSER=0
 }
+
+# This asks the question and runs the command based on the user input.
 
 values=( "Update" "Update with changed files" "Update Troubleshooting" "Update with changed files Troubleshooting")
 echo "Please Choose One Option:"
