@@ -75,7 +75,7 @@ upw() {
 	export COMPOSER_ALLOW_SUPERUSER=0
 }
 
-values=( "Just update" "Update with changed files" )
+values=( "Update" "Update with changed files" "Update Troubleshooting" "Update with changed files Troubleshooting")
 echo "Please Choose One Option:"
 select word in "${values[@]}"; do
     if [[ -z "$word" ]]; then
@@ -87,13 +87,17 @@ select word in "${values[@]}"; do
 done
 
 if [[ "$REPLY" == 1 ]]; then
-	### Runs if the user sclect input 1 ###
-	upwo
+	### Runs if the user sclect input 1. Sends extra chat output to trash ###
+	upwo > /dev/null
 elif [[ "$REPLY" == 2 ]]; then
-	### Runs if the user sclect input 2 ###
+	### Runs if the user sclect input 2. Sends extra chat output to trash ###
+	upw > /dev/null
+elif [[ "$REPLY" == 3 ]]; then
+	### Runs if the user sclect input 3 ###
+	upwo
+elif [[ "$REPLY" == 4 ]]; then
+	### Runs if the user sclect input 4 ###
 	upw
 else
 	echo "No commands set. Make an issue to recommend one."
 fi
-
-
