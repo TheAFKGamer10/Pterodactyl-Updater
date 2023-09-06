@@ -12,9 +12,15 @@ upwo() {
 
 	cd /var/www/pterodactyl
 	php artisan down
-	curl -Ls https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz | tar -xzv 
-	chmod -R 755 storage/* bootstrap/cache
-	composer install -q --no-dev --optimize-autoloader
+	if [ "$ts" == "true"]; then 
+		curl -L https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz | tar -xzv 
+		chmod -R 755 storage/* bootstrap/cache
+		composer install --no-dev --optimize-autoloader
+	else
+		curl -Ls https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz | tar -xzv 
+		chmod -R 755 storage/* bootstrap/cache
+		composer install -q --no-dev --optimize-autoloader
+	fi
 	php artisan view:clear
 	php artisan config:clear
 	php artisan migrate --seed --force
@@ -88,15 +94,20 @@ done
 
 if [[ "$REPLY" == 1 ]]; then
 	### Runs if the user sclect input 1. Sends extra chat output to trash ###
-	upwo > /dev/null
+	# ts = troubleshoot
+	"$ts" = "false"
+	upwo
 elif [[ "$REPLY" == 2 ]]; then
 	### Runs if the user sclect input 2. Sends extra chat output to trash ###
-	upw > /dev/null
+	"$ts" = "false"
+	upw
 elif [[ "$REPLY" == 3 ]]; then
 	### Runs if the user sclect input 3 ###
+	"$ts" = "true"
 	upwo
 elif [[ "$REPLY" == 4 ]]; then
 	### Runs if the user sclect input 4 ###
+	"$ts" = "true"
 	upw
 else
 	echo "No commands set. Make an issue to recommend one."
