@@ -120,8 +120,8 @@ upwts() {
 		mkdir /var/www/pterodactyl/Changedfiles/
 		mkdir /var/www/pterodactyl/Changedfiles/pterodactyl/
 		touch /var/www/pterodactyl/Changedfiles/DoNotPutAnythingInThisFolder
-		echo "Folder named 'pterodactyl' created in '/var/www/pterodactyl/Changedfiles/pterodactyl'" >&2
-		echo -e "Place any files you would like to replace every time you update the panel in this folder. \n\n More information can be found in our documentation. \n Please Read It! \n" >&2
+		echo -e "\nFolder named 'pterodactyl' created in '/var/www/pterodactyl/Changedfiles/pterodactyl'" >&2
+		echo -e "Place any files you would like to replace every time you update the panel in this folder. \n\n More information can be found in our documentation. \n Please Read It! \nRun the script again to update." >&2
 		exit 125
 	fi
 
