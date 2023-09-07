@@ -133,6 +133,8 @@ upwts() {
 
 	else
 		echo "node_modules folder does not exist. Adding packags. This may take extra time." >&2
+		echo "Extra chat outputs may apear." >&2
+		sleep 5
 		yarn add react-scripts
 		npx update-browserslist-db@latest
 		yarn
