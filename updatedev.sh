@@ -105,7 +105,7 @@ upw() {
 	php artisan up
 	if [ $? -eq 0 ]; then 
   		echo "Update Complete" 
-	elif [ $? -eq 125 ]
+	elif [ $? -eq 125 ]; then
   		echo "Script exited becasue '/var/www/pterodactyl/Changedfiles/pterodactyl' folder was made." >&2 
 	else
 		echo "Update failed. If there was not output, run with troubleshooting." >&2
@@ -163,7 +163,7 @@ upwts() {
 	php artisan up
 	if [ $? -eq 0 ]; then 
   		echo "Update Complete" 
-	elif [ $? -eq 125 ]
+	elif [ $? -eq 125 ]; then
   		echo "Script exited becasue '/var/www/pterodactyl/Changedfiles/pterodactyl' folder was made." >&2 
 	else
 		echo "Update failed. If there was not output, run with troubleshooting." >&2
