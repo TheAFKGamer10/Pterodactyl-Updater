@@ -24,8 +24,7 @@ upwo() {
 	php artisan queue:restart
 	php artisan up
 
-	if [ $? -eq 0 ] 
-	then 
+	if [ $? -eq 0 ]; then 
   		echo "Update Complete" 
 	else 
   		echo "Update failed. If there was not output, run with troubleshooting." >&2 
@@ -51,8 +50,7 @@ upwots() {
 	php artisan queue:restart
 	php artisan up
 
-	if [ $? -eq 0 ] 
-	then 
+	if [ $? -eq 0 ]; then 
   		echo "Update Complete" 
 	else 
   		echo "Update failed. If there was not output, run with troubleshooting." >&2 
@@ -105,8 +103,7 @@ upw() {
 	php artisan view:cache
 	php artisan queue:restart
 	php artisan up
-	if [ $? -eq 0 ] 
-	then 
+	if [ $? -eq 0 ]; then 
   		echo "Update Complete" 
 	elif [ $? -eq 125 ]
   		echo "Script exited becasue '/var/www/pterodactyl/Changedfiles/pterodactyl' folder was made." >&2 
@@ -164,8 +161,7 @@ upwts() {
 	php artisan view:cache
 	php artisan queue:restart
 	php artisan up
-	if [ $? -eq 0 ] 
-	then 
+	if [ $? -eq 0 ]; then 
   		echo "Update Complete" 
 	elif [ $? -eq 125 ]
   		echo "Script exited becasue '/var/www/pterodactyl/Changedfiles/pterodactyl' folder was made." >&2 
