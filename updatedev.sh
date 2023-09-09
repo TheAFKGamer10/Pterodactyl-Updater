@@ -80,7 +80,6 @@ upw() {
 
 	if [ -d /var/www/pterodactyl/node_modules ]; then
 		echo "node_modules folder exists. Running update commands now ..." >&2
-
 	else
 		echo "node_modules folder does not exist. Adding packags. This may take extra time." >&2
 		yarn add react-scripts
@@ -130,7 +129,6 @@ upwts() {
 
 	if [ -d /var/www/pterodactyl/node_modules ]; then
 		echo "node_modules folder exists. Running update commands now ..." >&2
-
 	else
 		echo "node_modules folder does not exist. Adding packags. This may take extra time." >&2
 		echo "Extra chat outputs may apear." >&2
