@@ -108,7 +108,7 @@ upw() {
 	elif [ $? -eq 125 ]; then
   		echo "Script exited becasue '/var/www/pterodactyl/Changedfiles/pterodactyl' folder was made." >&2 
 	else
-		echo "Update failed. If there was not output, run with troubleshooting." >&2
+		echo "Update failed. If there was no output, run with troubleshooting." >&2
 	fi
 
 	export COMPOSER_ALLOW_SUPERUSER=0
@@ -166,7 +166,7 @@ upwts() {
 	elif [ $? -eq 125 ]; then
   		echo "Script exited becasue '/var/www/pterodactyl/Changedfiles/pterodactyl' folder was made." >&2 
 	else
-		echo "Update failed. If there was not output, run with troubleshooting." >&2
+		echo "Update failed. If there was no output, run with troubleshooting." >&2
 	fi
 
 	export COMPOSER_ALLOW_SUPERUSER=0
