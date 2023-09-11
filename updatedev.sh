@@ -6,6 +6,12 @@
 #upwots (update without installing changed files troubleshooting)
 #upwts (update with changed files troubleshooting)
 
+if [ $EUID -ne 0 ]; then
+	echo "This script must be run as root" >&2
+	echo "Use 'sudo -i' to run as root" >&2
+	exit 13
+fi
+
 upwo() {
 	echo "Updating Pterodactyl ..." >&2
 	echo "Please wait while we run the commands. This may take up to 5 minutes." >&2
