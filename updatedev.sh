@@ -12,6 +12,11 @@ if [ $EUID -ne 0 ]; then
 	exit 13
 fi
 
+if [ ! -d /var/www/pterodactyl ]; then
+		echo -e "This script requires that your pterodactyl instance is in '/var/www/pterodactyl'. /nMake a feture request if your instance is somewhere else." >&2
+		exit 2
+	fi
+
 upwo() {
 	echo "Updating Pterodactyl ..." >&2
 	echo "Please wait while we run the commands. This may take up to 5 minutes." >&2
