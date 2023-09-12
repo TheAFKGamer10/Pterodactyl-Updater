@@ -1,11 +1,21 @@
 #!/bin/bash
 
+#      ___    ________ __    __  __           __  _            
+#     /   |  / ____/ //_/   / / / /___  _____/ /_(_)___  ____ _
+#    / /| | / /_  / ,<     / /_/ / __ \/ ___/ __/ / __ \/ __ `/
+#   / ___ |/ __/ / /| |   / __  / /_/ (__  ) /_/ / / / / /_/ / 
+#  /_/  |_/_/   /_/ |_|  /_/ /_/\____/____/\__/_/_/ /_/\__, /  
+#                                                     /____/   
+#
+# https://afkhosting.win  | license: GNU General Public License v3.0
+
 #Defines the update varibles. 
 #upwo (update without installing changed files)
 #upw (update with changed files)
 #upwots (update without installing changed files troubleshooting)
 #upwts (update with changed files troubleshooting)
 
+# Checks for dependencies
 if [ $EUID -ne 0 ]; then
 	echo "This script must be run as root" >&2
 	echo "Use 'sudo -i' to run as root" >&2
@@ -17,6 +27,12 @@ if [ ! -d /var/www/pterodactyl ]; then
 	exit 2
 fi
 
+if [ ! command -v apt-get &> /dev/null ]; then
+  echo "This script only works on Debian-based systems."
+  quit
+fi
+
+# Sets varibles for the update commands.
 upwo() {
 	echo "Updating Pterodactyl ..." >&2
 	echo "Please wait while we run the commands. This may take up to 5 minutes." >&2
