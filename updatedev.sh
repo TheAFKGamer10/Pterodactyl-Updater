@@ -7,7 +7,7 @@
 #  /_/  |_/_/   /_/ |_|  /_/ /_/\____/____/\__/_/_/ /_/\__, /  
 #                                                     /____/   
 #
-# https://afkhosting.win  | license: GNU General Public License v3.0
+# https://afkhosting.win | license: GNU General Public License v3.0
 
 #Defines the update varibles. 
 #upwo (update without installing changed files)
@@ -22,14 +22,14 @@ if [ $EUID -ne 0 ]; then
 	exit 13
 fi
 
-if [ ! -d /var/www/pterodactyl ]; then
-	echo -e "This script requires that your pterodactyl instance is in '/var/www/pterodactyl'. /nMake a feture request if your instance is somewhere else." >&2
-	exit 2
-fi
-
 if [ ! command -v apt-get &> /dev/null ]; then
   echo "This script only works on Debian-based systems."
   quit
+fi
+
+if [ ! -d /var/www/pterodactyl ]; then
+	echo -e "This script requires that your pterodactyl instance is in '/var/www/pterodactyl'. /nMake a feture request if your instance is somewhere else." >&2
+	exit 2
 fi
 
 # Sets varibles for the update commands.
@@ -175,31 +175,50 @@ upwts() {
 	export COMPOSER_ALLOW_SUPERUSER=0
 }
 
+question() {
 # This asks the question and runs the command based on the user input.
+clear
+echo "Copyright © 2023 AFK Hosting"
+echo "This script is licensed under the GNU General Public License v3.0"
+echo "Built By The AFK Gamer"
+echo ""
+echo "[1] Update"
+echo "[2] Update with changed files"
+echo "[3] Troubleshoot"
+read -p "Please enter a number: " mainchoice
 
-values=( "Update" "Update with changed files" "Update Troubleshooting" "Update with changed files Troubleshooting")
-echo "Please Choose One Option:"
-select word in "${values[@]}"; do
-    if [[ -z "$word" ]]; then
-        printf '"%s" is not a valid choice. Try again.\n' "$REPLY" >&2
-    else
-        user_in="$(( REPLY - 1 ))"
-        break
-    fi
-done
-
-if [[ "$REPLY" == 1 ]]; then
+if [[ "$mainchoice" == 1 ]]; then
 	### Runs if the user sclect input 1. Sends extra chat output to trash ###
 	upwo > /dev/null
-elif [[ "$REPLY" == 2 ]]; then
+elif [[ "$mainchoice" == 2 ]]; then
 	### Runs if the user sclect input 2. Sends extra chat output to trash ###
 	upw > /dev/null
-elif [[ "$REPLY" == 3 ]]; then
+elif [[ "$mainchoice" == 3 ]]; then
 	### Runs if the user sclect input 3 ###
-	upwots
-elif [[ "$REPLY" == 4 ]]; then
-	### Runs if the user sclect input 4 ###
-	upwts
+	clear
+	echo "Troubleshooting mode enabled. This will run the update commands with extra chat output."
+	echo "This is useful for debugging."
+	echo ""
+	echo "[1] Update Troubleshooting"
+	echo "[2] Update with changed files Troubleshooting"
+	echo "[3] Back"
+	read -p "Please enter a number: " troubleshootchoice
+	if [[ "$troubleshootchoice" == 1 ]]; then
+		### Runs if the user sclect input 1. 
+		upwots
+	elif [[ "$troubleshootchoice" == 2 ]]; then
+		### Runs if the user sclect input 2. 
+		upwts
+	elif [[ "$troubleshootchoice" == 3 ]]; then
+		### Runs if the user sclect input 2. 
+		question	
+	else
+		echo "Invalid input. Please try again."
+	fi
 else
-	echo "No commands set. Make an issue to recommend one."
+	echo "Not a regestered input. Please try again."
+	question
 fi
+}
+
+question
