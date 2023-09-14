@@ -3,7 +3,7 @@ This script will update your [Pterodactyl](https://pterodactyl.io) instance and 
 
 ## Use the script 
 ```
-bash <(curl -s https://raw.githubusercontent.com/TheAFKGamer10/Pterodactyl-Updater/Dev/updatedev.sh)
+bash <(curl -s https://raw.githubusercontent.com/TheAFKGamer10/Pterodactyl-Updater/WinTest/updatedev.sh)
 ```
 
 ## What does it do?
