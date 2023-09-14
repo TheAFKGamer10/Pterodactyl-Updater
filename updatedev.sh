@@ -176,11 +176,11 @@ question() {
 
 	if [[ "$mainchoice" == 1 ]]; then
 		### Runs if the user sclect input 1. Sends extra chat output to trash ###
-		wrong = false
+		wrong = "false"
 		upwo > /dev/null
 	elif [[ "$mainchoice" == 2 ]]; then
 		### Runs if the user sclect input 2. Sends extra chat output to trash ###
-		wrong = false
+		wrong = "false"
 		upw > /dev/null
 	elif [[ "$mainchoice" == 3 ]]; then
 		### Runs if the user sclect input 3 ###
@@ -194,22 +194,22 @@ question() {
 		read -p "Please enter a number: " troubleshootchoice
 		if [[ "$troubleshootchoice" == 1 ]]; then
 			### Runs if the user sclect input 1. 
-			wrong = false
+			wrong = "false"
 			upwots
 		elif [[ "$troubleshootchoice" == 2 ]]; then
 			### Runs if the user sclect input 2. 
-			wrong = false
+			wrong = "false"
 			upwts
 		elif [[ "$troubleshootchoice" == 3 ]]; then
 			### Runs if the user sclect input 2. 
-			wrong = false
+			wrong = "false"
 			question	
 		else
 			echo "Invalid input. Please try again."
-			wrong = true
+			wrong = "true"
 		fi
 	else
-		wrong = true
+		wrong = "true"
 		question
 	fi
 }
