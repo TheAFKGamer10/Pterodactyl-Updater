@@ -209,7 +209,6 @@ question() {
 			wrong = true
 		fi
 	else
-		echo "Not a regestered input. Please try again."
 		wrong = true
 		question
 	fi
