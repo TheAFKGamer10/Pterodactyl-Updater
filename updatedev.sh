@@ -176,49 +176,60 @@ upwts() {
 }
 
 question() {
-# This asks the question and runs the command based on the user input.
-clear
-echo "Copyright © 2023 AFK Hosting"
-echo "This script is licensed under the GNU General Public License v3.0"
-echo "Built By The AFK Gamer"
-echo ""
-echo "[1] Update"
-echo "[2] Update with changed files"
-echo "[3] Troubleshoot"
-read -p "Please enter a number: " mainchoice
-
-if [[ "$mainchoice" == 1 ]]; then
-	### Runs if the user sclect input 1. Sends extra chat output to trash ###
-	upwo > /dev/null
-elif [[ "$mainchoice" == 2 ]]; then
-	### Runs if the user sclect input 2. Sends extra chat output to trash ###
-	upw > /dev/null
-elif [[ "$mainchoice" == 3 ]]; then
-	### Runs if the user sclect input 3 ###
+	# This asks the question and runs the command based on the user input.
 	clear
-	echo "Troubleshooting mode enabled. This will run the update commands with extra chat output."
-	echo "This is useful for debugging."
-	echo ""
-	echo "[1] Update Troubleshooting"
-	echo "[2] Update with changed files Troubleshooting"
-	echo "[3] Back"
-	read -p "Please enter a number: " troubleshootchoice
-	if [[ "$troubleshootchoice" == 1 ]]; then
-		### Runs if the user sclect input 1. 
-		upwots
-	elif [[ "$troubleshootchoice" == 2 ]]; then
-		### Runs if the user sclect input 2. 
-		upwts
-	elif [[ "$troubleshootchoice" == 3 ]]; then
-		### Runs if the user sclect input 2. 
-		question	
-	else
+	echo "Copyright © 2023 AFK Hosting"
+	echo "This script is licensed under the GNU General Public License v3.0"
+	echo "Built By The AFK Gamer"
+	if [[ "$wrong" == true ]]; then
+		echo ""
 		echo "Invalid input. Please try again."
 	fi
-else
-	echo "Not a regestered input. Please try again."
-	question
-fi
+	echo ""
+	echo "[1] Update"
+	echo "[2] Update with changed files"
+	echo "[3] Troubleshoot"
+	read -p "Please enter a number: " mainchoice
+
+	if [[ "$mainchoice" == 1 ]]; then
+		### Runs if the user sclect input 1. Sends extra chat output to trash ###
+		wrong = false
+		upwo > /dev/null
+	elif [[ "$mainchoice" == 2 ]]; then
+		### Runs if the user sclect input 2. Sends extra chat output to trash ###
+		wrong = false
+		upw > /dev/null
+	elif [[ "$mainchoice" == 3 ]]; then
+		### Runs if the user sclect input 3 ###
+		clear
+		echo "Troubleshooting mode enabled. This will run the update commands with extra chat output."
+		echo "This is useful for debugging."
+		echo ""
+		echo "[1] Update Troubleshooting"
+		echo "[2] Update with changed files Troubleshooting"
+		echo "[3] Back"
+		read -p "Please enter a number: " troubleshootchoice
+		if [[ "$troubleshootchoice" == 1 ]]; then
+			### Runs if the user sclect input 1. 
+			wrong = false
+			upwots
+		elif [[ "$troubleshootchoice" == 2 ]]; then
+			### Runs if the user sclect input 2. 
+			wrong = false
+			upwts
+		elif [[ "$troubleshootchoice" == 3 ]]; then
+			### Runs if the user sclect input 2. 
+			wrong = false
+			question	
+		else
+			echo "Invalid input. Please try again."
+			wrong = true
+		fi
+	else
+		echo "Not a regestered input. Please try again."
+		wrong = true
+		question
+	fi
 }
 
 question
