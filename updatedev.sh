@@ -15,23 +15,6 @@
 #upwots (update without installing changed files troubleshooting)
 #upwts (update with changed files troubleshooting)
 
-# Checks for dependencies
-if [ $EUID -ne 0 ]; then
-	echo "This script must be run as root" >&2
-	echo "Use 'sudo -i' to run as root" >&2
-	exit 13
-fi
-
-if [ ! command -v apt-get &> /dev/null ]; then
-  echo "This script only works on Debian-based systems."
-  quit
-fi
-
-if [ ! -d /var/www/pterodactyl ]; then
-	echo -e "This script requires that your pterodactyl instance is in '/var/www/pterodactyl'. /nMake a feture request if your instance is somewhere else." >&2
-	exit 2
-fi
-
 # Sets varibles for the update commands.
 upwo() {
 	echo "Updating Pterodactyl ..." >&2
