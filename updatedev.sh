@@ -193,42 +193,50 @@ question() {
 
 	if [[ "$mainchoice" == 1 ]]; then
 		### Runs if the user sclect input 1. Sends extra chat output to trash ###
-		wrong = false
+		wrong="false"
 		upwo > /dev/null
 	elif [[ "$mainchoice" == 2 ]]; then
 		### Runs if the user sclect input 2. Sends extra chat output to trash ###
-		wrong = false
+		wrong="false"
 		upw > /dev/null
 	elif [[ "$mainchoice" == 3 ]]; then
 		### Runs if the user sclect input 3 ###
-		clear
-		echo "Troubleshooting mode enabled. This will run the update commands with extra chat output."
-		echo "This is useful for debugging."
-		echo ""
-		echo "[1] Update Troubleshooting"
-		echo "[2] Update with changed files Troubleshooting"
-		echo "[3] Back"
-		read -p "Please enter a number: " troubleshootchoice
-		if [[ "$troubleshootchoice" == 1 ]]; then
-			### Runs if the user sclect input 1. 
-			wrong = false
-			upwots
-		elif [[ "$troubleshootchoice" == 2 ]]; then
-			### Runs if the user sclect input 2. 
-			wrong = false
-			upwts
-		elif [[ "$troubleshootchoice" == 3 ]]; then
-			### Runs if the user sclect input 2. 
-			wrong = false
-			question	
-		else
-			echo "Invalid input. Please try again."
-			wrong = true
-		fi
+		wrong="false"
+		questionts
 	else
-		echo "Not a regestered input. Please try again."
-		wrong = true
+		wrong="true"
 		question
+	fi
+}
+
+questionts() {
+	clear
+	echo "Troubleshooting mode enabled. This will run the update commands with extra chat output."
+	echo "This is useful for debugging."
+	if [[ "$wrong" == true ]]; then
+		echo ""
+		echo "Invalid input. Please try again."
+	fi
+	echo ""
+	echo "[1] Update Troubleshooting"
+	echo "[2] Update with changed files Troubleshooting"
+	echo "[3] Back"
+	read -p "Please enter a number: " troubleshootchoice
+	if [[ "$troubleshootchoice" == 1 ]]; then
+		### Runs if the user sclect input 1. 
+		wrong="false"
+		upwots
+	elif [[ "$troubleshootchoice" == 2 ]]; then
+		### Runs if the user sclect input 2. 
+		wrong="false"
+		upwts
+	elif [[ "$troubleshootchoice" == 3 ]]; then
+		### Runs if the user sclect input 2. 
+		wrong="false"
+		question	
+	else
+		wrong="true"
+		questionts
 	fi
 }
 
