@@ -218,7 +218,6 @@ questionts() {
 		wrong="false"
 		question	
 	else
-		echo "Invalid input. Please try again."
 		wrong="true"
 		questionts
 	fi
