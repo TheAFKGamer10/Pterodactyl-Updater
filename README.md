@@ -7,7 +7,7 @@ bash <(curl -s https://raw.githubusercontent.com/TheAFKGamer10/Pterodactyl-Updat
 ```
 or run the Dev branch
 ```
-bash <(curl -s https://raw.githubusercontent.com/TheAFKGamer10/Pterodactyl-Updater/Dev/updatedev.sh)
+bash <(curl -s https://raw.githubusercontent.com/TheAFKGamer10/Pterodactyl-Updater/Dev/update.sh)
 ```
 ## What does it do?
 This script will ask you how you would like to update your panel. 
