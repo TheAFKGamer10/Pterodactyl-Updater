@@ -175,6 +175,16 @@ upwts() {
 	export COMPOSER_ALLOW_SUPERUSER=0
 }
 
+wings() {
+	echo "Updating Pterodactyl ..." >&2
+	echo "Please wait while we run the commands. This may take up to 5 minutes." >&2
+	
+	systemctl stop wings
+	curl -L -o /usr/local/bin/wings "https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_$([[ "$(uname -m)" == "x86_64" ]] && echo "amd64" || echo "arm64")"
+	chmod u+x /usr/local/bin/wings
+	systemctl restart wings
+}
+
 question() {
 	# This asks the question and runs the command based on the user input.
 	clear
@@ -186,9 +196,10 @@ question() {
 		echo "Invalid input. Please try again."
 	fi
 	echo ""
-	echo "[1] Update"
-	echo "[2] Update with changed files"
-	echo "[3] Troubleshoot"
+	echo "[1] Update Panel"
+	echo "[2] Update Panel with changed files"
+	echo "[3] Update Wings"
+	echo "[4] Troubleshoot"
 	read -p "Please enter a number: " mainchoice
 
 	if [[ "$mainchoice" == 1 ]]; then
@@ -200,6 +211,10 @@ question() {
 		wrong="false"
 		upw > /dev/null
 	elif [[ "$mainchoice" == 3 ]]; then
+		### Runs if the user sclect input 3. Sends extra chat output to trash ###
+		wrong="false"
+		wings > /dev/null
+	elif [[ "$mainchoice" == 4 ]]; then
 		### Runs if the user sclect input 3 ###
 		wrong="false"
 		questionts
@@ -218,8 +233,8 @@ questionts() {
 		echo "Invalid input. Please try again."
 	fi
 	echo ""
-	echo "[1] Update Troubleshooting"
-	echo "[2] Update with changed files Troubleshooting"
+	echo "[1] Update Panel Troubleshooting"
+	echo "[2] Update Panel with changed files Troubleshooting"
 	echo "[3] Back"
 	read -p "Please enter a number: " troubleshootchoice
 	if [[ "$troubleshootchoice" == 1 ]]; then
